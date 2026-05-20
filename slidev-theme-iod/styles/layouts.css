@@ -1,0 +1,300 @@
+/* ============================================================
+   Layouts IoD — cover, default, section, statement, quote, end
+   ============================================================ */
+
+/* ---------- DEFAULT (content) ---------- */
+.iod-layout-default {
+  padding: 2.5rem 3rem 4rem 3rem;
+  background: var(--iod-white);
+  height: 100%;
+  position: relative;
+}
+
+.iod-content {
+  height: calc(100% - 3rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- COVER ---------- */
+.iod-layout-cover {
+  background: var(--iod-cyan);
+  color: var(--iod-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+  height: 100%;
+  position: relative;
+}
+
+.iod-layout-cover h1 {
+  color: var(--iod-white);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.iod-layout-cover h2,
+.iod-layout-cover p {
+  color: var(--iod-white);
+  opacity: 0.95;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.iod-layout-cover .iod-cover-logo {
+  position: absolute;
+  bottom: 3rem;
+  height: 5rem;
+}
+
+/* ---------- SECTION (transition) ---------- */
+.iod-layout-section {
+  background: var(--iod-cyan);
+  color: var(--iod-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 4rem;
+  height: 100%;
+  position: relative;
+}
+
+.iod-layout-section .section-number {
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: var(--iod-white);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.iod-layout-section h1 {
+  color: var(--iod-white);
+  font-size: 3rem;
+  max-width: 75%;
+}
+
+.iod-layout-section h2 {
+  color: var(--iod-white);
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 0.75rem;
+  font-size: 1.5rem;
+  max-width: 75%;
+}
+
+/* ---------- END ---------- */
+.iod-layout-end {
+  background: var(--iod-black);
+  color: var(--iod-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+  height: 100%;
+}
+
+.iod-layout-end h1 {
+  color: var(--iod-white);
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.iod-layout-end .question {
+  color: var(--iod-cyan);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.iod-layout-end .contacts {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.iod-layout-end .contacts a {
+  color: var(--iod-cyan);
+}
+
+.iod-layout-end .end-logo {
+  height: 5rem;
+  filter: brightness(0) invert(1);
+}
+
+/* ---------- STATEMENT (centered) ---------- */
+.iod-layout-statement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 3rem 4rem 3rem;
+  background: var(--iod-white);
+  height: 100%;
+  position: relative;
+}
+
+.iod-layout-statement h1 {
+  text-align: center;
+}
+
+/* ---------- QUOTE ---------- */
+.iod-layout-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  background: var(--iod-white);
+  height: 100%;
+  position: relative;
+}
+
+.iod-layout-quote .quote-content {
+  max-width: 70%;
+  text-align: center;
+}
+
+.iod-layout-quote .quote-text {
+  font-size: 1.75rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--iod-black);
+}
+
+.iod-layout-quote .quote-author {
+  margin-top: 1.5rem;
+  color: var(--iod-muted);
+  font-size: 1.1rem;
+}
+
+.iod-layout-quote .quote-mark {
+  font-size: 4rem;
+  color: var(--iod-cyan);
+  line-height: 0.5;
+  margin-bottom: 1rem;
+}
+
+.iod-layout-quote .quote-logo {
+  position: absolute;
+  bottom: 2rem;
+  height: 3rem;
+}
+
+/* ---------- FOOTER (default layout) ---------- */
+.iod-footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 3rem;
+  right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--iod-muted);
+}
+
+.iod-footer .logo {
+  height: 2.5rem;
+  width: auto;
+}
+
+.iod-footer .meta {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  font-weight: 500;
+}
+
+.iod-footer .meta .divider {
+  color: var(--iod-faint);
+}
+
+/* ---------- SECTION TAG (top-left pastille) ---------- */
+.iod-section-tag {
+  position: absolute;
+  top: 1.25rem;
+  left: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--iod-cyan);
+  text-transform: uppercase;
+}
+
+.iod-section-tag::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--iod-cyan);
+  display: inline-block;
+}
+
+/* ---------- 2 / 3 COLUMNS (utility) ---------- */
+.iod-cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.iod-cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* ---------- INFO BOX (cream beige, OFISI-style) ---------- */
+.iod-box {
+  background: var(--iod-cream);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.iod-box-accent {
+  border-left: 4px solid var(--iod-cyan);
+  padding-left: 1rem;
+  background: var(--iod-cyan-light);
+  padding: 1rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.iod-box-warning {
+  background: #FEF3E2;
+  border-left: 4px solid var(--iod-warning);
+  padding: 1rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* ---------- NUMBERED CARD (01/02/03 statement layout) ---------- */
+.iod-numbered {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.iod-numbered .num {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--iod-cyan);
+  line-height: 1;
+}
+
+.iod-numbered .title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--iod-black);
+}
+
+.iod-numbered .desc {
+  font-size: 0.95rem;
+  color: var(--iod-text);
+}

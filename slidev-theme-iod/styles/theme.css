@@ -1,0 +1,83 @@
+/* ============================================================
+   slidev-theme-iod — Brand tokens (couleurs, polices)
+   Charte IoD solutions : cyan/blanc/noir.
+   ============================================================ */
+
+:root {
+  --iod-cyan: #009FBC;
+  --iod-cyan-dark: #007D94;
+  --iod-cyan-light: #E5F4F7;
+  --iod-black: #000000;
+  --iod-white: #FFFFFF;
+  --iod-text: #1F2937;
+  --iod-muted: #6B7280;
+  --iod-faint: #9CA3AF;
+  --iod-cream: #EFE9DC;
+  --iod-warning: #E8A23C;
+
+  --slidev-theme-primary: var(--iod-cyan);
+  --slidev-code-font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.dark {
+  --iod-text: #F3F4F6;
+  --iod-muted: #9CA3AF;
+}
+
+html,
+body {
+  font-family: 'Inter', 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+  color: var(--iod-text);
+}
+
+.slidev-layout {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.slidev-layout h1 {
+  font-size: 2.75rem;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--iod-black);
+  margin-bottom: 0.75rem;
+}
+
+.slidev-layout h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--iod-black);
+  margin-bottom: 0.5rem;
+}
+
+.slidev-layout h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--iod-black);
+}
+
+.slidev-layout p,
+.slidev-layout li {
+  font-size: 1.125rem;
+}
+
+.slidev-layout a {
+  color: var(--iod-cyan-dark);
+  text-decoration: underline;
+}
+
+.slidev-layout strong {
+  font-weight: 700;
+  color: var(--iod-black);
+}
+
+.slidev-layout em {
+  font-style: italic;
+}
+
+.accent { color: var(--iod-cyan); }
+.muted { color: var(--iod-muted); }
+
+/* Accent highlight on titles : « titre <span class="accent">mot-clé</span> » */
+.slidev-layout h1 .accent { color: var(--iod-cyan); }

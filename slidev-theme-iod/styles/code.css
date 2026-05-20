@@ -1,0 +1,21 @@
+/* Code blocks — accordé avec la charte IoD */
+.slidev-layout pre,
+.slidev-layout code {
+  font-family: var(--slidev-code-font-family);
+}
+
+.slidev-layout pre {
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem !important;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.slidev-layout :not(pre) > code {
+  background: var(--iod-cyan-light);
+  color: var(--iod-cyan-dark);
+  padding: 0.125rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-weight: 500;
+}
