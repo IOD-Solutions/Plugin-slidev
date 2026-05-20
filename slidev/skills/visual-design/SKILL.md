@@ -10,9 +10,60 @@ Effective visual design combines diagrams, images, and consistent theming to cre
 
 **Evidence-based accessibility**: This skill incorporates research-based best practices for accessible visual design. See `references/presentation-best-practices.md` for full guidelines.
 
+## IoD charter — default visual language
+
+For every IoD presentation, the visual language is **fixed and minimal**:
+
+- **One primary colour**: cyan `#009FBC` (with darker `#007D94` for hover/depth and lighter `#E5F4F7` for soft fills)
+- **One soft accent**: cream `#EFE9DC` for info/note boxes (matches the OFISI template)
+- **Neutrals only otherwise**: black text on white, muted grey `#6B7280` for footers and captions
+- **Imagery**: prefer **black & white** stock photography (matches the IoD template) — colour photos should be desaturated or framed inside the cyan-bordered card pattern from the template
+- **Mermaid diagrams**: theme nodes with cyan primary, neutral grey strokes, no rainbow node colours. Apply the IoD Mermaid theme block (see Mermaid section below)
+- **Icons**: monochrome line icons (Feather, Heroicons outline) — never multi-coloured Material icons
+
+Slide-level CSS classes provided by `@iod-solutions/slidev-theme`:
+
+| Class            | Purpose                                                   |
+|------------------|-----------------------------------------------------------|
+| `.accent`        | Cyan emphasis text                                        |
+| `.muted`         | Grey secondary text                                       |
+| `.iod-box`       | Cream beige info box (OFISI-style neutral note)           |
+| `.iod-box-accent`| Cyan-light box with cyan border (highlighted comparison)  |
+| `.iod-box-warning`| Cream-orange box (caveat / risk)                         |
+| `.iod-cols-2/3`  | Equal grid (2 or 3 columns)                               |
+| `.iod-numbered`  | Numbered card (01/02/03) — the IoD signature pattern      |
+
+**Never** generate Tailwind classes like `border-blue-500`, `bg-orange-50`, `text-green-600`, `bg-red-100`. Those produce the multi-coloured rainbow that breaks the IoD charter. Use the classes above instead.
+
 ## Mermaid Diagrams
 
 Mermaid provides text-based diagramming that renders beautifully in Slidev and exports well.
+
+### Charter-compliant theme block (IoD palette)
+
+Apply this block at the top of any Mermaid diagram to lock the colours to the IoD palette:
+
+````markdown
+```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#E5F4F7',
+    'primaryBorderColor': '#009FBC',
+    'primaryTextColor': '#1F2937',
+    'lineColor': '#6B7280',
+    'secondaryColor': '#EFE9DC',
+    'tertiaryColor': '#FFFFFF',
+    'fontFamily': 'Inter, sans-serif'
+  }
+}}%%
+flowchart LR
+  A[Pod] --> B[Service]
+  B --> C[Ingress]
+```
+````
+
+This keeps every diagram visually coherent with the IoD slide chrome: cyan accents on cyan-light fills, neutral grey strokes, dark text. Override only if a single diagram has a strong semantic reason (e.g. red for "error" path, green for "success").
 
 ### Flowcharts
 
@@ -458,41 +509,34 @@ ugly, bad anatomy, poorly drawn
 
 ### Color Palettes
 
-**Corporate/Professional:**
+**IoD solutions charter (default for every IoD slide deck):**
 ```
-Primary: #1e40af (Deep Blue)
-Secondary: #6b7280 (Gray)
-Accent: #3b82f6 (Bright Blue)
-Background: #ffffff (White)
-Text: #1f2937 (Dark Gray)
-```
-
-**Tech/Modern:**
-```
-Primary: #3b82f6 (Blue)
-Secondary: #8b5cf6 (Purple)
-Accent: #06b6d4 (Cyan)
-Background: #0f172a (Dark Navy)
-Text: #f8fafc (Light)
+Primary cyan:       #009FBC  (--iod-cyan)        ← brand accent
+Primary cyan dark:  #007D94  (--iod-cyan-dark)   ← hover, deep accent
+Primary cyan light: #E5F4F7  (--iod-cyan-light)  ← accent box bg
+Cream:              #EFE9DC  (--iod-cream)       ← info box bg
+Warning:            #E8A23C  (--iod-warning)     ← warn box border
+Text:               #1F2937  (--iod-text)        ← body copy
+Muted:              #6B7280  (--iod-muted)       ← captions, footers
+Background:         #FFFFFF  / #000000 (end layout only)
 ```
 
-**Academic/Formal:**
-```
-Primary: #1e3a8a (Navy)
-Secondary: #991b1b (Maroon)
-Accent: #92400e (Brown)
-Background: #fef3c7 (Cream)
-Text: #1c1917 (Black)
-```
+Rule of thumb: **never** introduce a 4th colour on a slide. Cyan + cream + neutrals only. Multi-coloured rainbows belong to other charters, not IoD.
 
-**Creative/Energetic:**
+The palette is exposed as CSS variables by `@iod-solutions/slidev-theme`. Override only with strong justification (e.g. data viz where colour mapping is semantically required).
+
+**Fallback palettes** — only when the user explicitly opts out of IoD branding (external talk, conference, client charter):
+
+<details>
+<summary>Corporate / Tech / Academic / Creative defaults</summary>
+
 ```
-Primary: #dc2626 (Red)
-Secondary: #f59e0b (Amber)
-Accent: #8b5cf6 (Purple)
-Background: #ffffff (White)
-Text: #18181b (Black)
+Corporate:   #1e40af / #6b7280 / #3b82f6  (blue + gray + accent blue)
+Tech modern: #3b82f6 / #8b5cf6 / #06b6d4  (blue + purple + cyan, dark bg)
+Academic:    #1e3a8a / #991b1b / #92400e  (navy + maroon + brown, cream bg)
+Creative:    #dc2626 / #f59e0b / #8b5cf6  (red + amber + purple)
 ```
+</details>
 
 ### Color Theory
 

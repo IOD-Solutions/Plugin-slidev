@@ -239,8 +239,13 @@ class SlideManager:
             title: Slide title
             layout: Slidev layout (default: 'default')
         """
+        # IoD charter template: include `meta` and `sectionTag` placeholders so
+        # the slide ships with the polished footer + top-left pastille from
+        # `@iod-solutions/slidev-theme`. User fills them in during editing.
         content = f"""---
 layout: {layout}
+meta: ''           # IoD footer text (e.g. presentation title) — optional
+sectionTag: ''    # IoD top-left pastille (e.g. section name) — optional
 ---
 
 # {title}

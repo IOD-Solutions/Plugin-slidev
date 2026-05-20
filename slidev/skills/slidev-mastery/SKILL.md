@@ -10,6 +10,8 @@ Slidev is a presentation framework for developers that uses markdown with Vue co
 
 **Evidence-based design**: This skill incorporates research-based best practices for accessible, effective presentations. See `references/presentation-best-practices.md` for full guidelines.
 
+**IoD default theme**: every Slidev project produced via this plugin uses `@iod-solutions/slidev-theme`. Use its layouts (`cover`, `default`, `section`, `two-cols`, `statement`, `quote`, `end`) and CSS classes (`.iod-numbered`, `.iod-box`, `.iod-box-accent`, `.iod-box-warning`, `.accent`, `.muted`). See the [`visual-design`](../visual-design/SKILL.md) skill for the full charter. Reach for built-in Slidev layouts (`image-right`, `center`, `intro`…) only when the user explicitly opts out of IoD branding.
+
 ## Core Concepts
 
 ### Slide Separation

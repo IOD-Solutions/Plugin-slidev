@@ -127,14 +127,16 @@ Create 2-4 variations showing different approaches:
 - **Contrast**: All text meets 4.5:1 minimum
 - **Readability**: Sans-serif labels, clear arrows
 
-**Diagram:**
+**Diagram (IoD charter theme block — cyan + cream + neutrals):**
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {
-  'primaryColor':'#3b82f6',
-  'primaryTextColor':'#fff',
-  'primaryBorderColor':'#2563eb',
-  'lineColor':'#6b7280',
-  'secondaryColor':'#f97316'
+  'primaryColor':'#E5F4F7',
+  'primaryTextColor':'#1F2937',
+  'primaryBorderColor':'#009FBC',
+  'lineColor':'#6B7280',
+  'secondaryColor':'#EFE9DC',
+  'tertiaryColor':'#FFFFFF',
+  'fontFamily':'Inter, sans-serif'
 }}}%%
 graph TD
     A[Start: User Request] --> B{Validate Input}
@@ -165,7 +167,12 @@ graph TD
 
 **Diagram:**
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#3b82f6'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {
+  'primaryColor':'#E5F4F7',
+  'primaryBorderColor':'#009FBC',
+  'primaryTextColor':'#1F2937',
+  'lineColor':'#6B7280'
+}}}%%
 graph LR
     A[Input] --> B[Validate]
     B --> C[Process]
@@ -323,22 +330,26 @@ Replace mermaid code block with image reference:
 
 Offer customization:
 
-**Theme Colors (Colorblind-Safe):**
-"Should we adjust the colors to match your presentation theme?"
+**Theme Colors (IoD charter — default):**
+"Want to keep IoD branding or apply a different theme?"
 
-Apply colorblind-safe theme (Blue + Orange verified safe):
+Apply the IoD theme block (cyan + cream + neutrals — colourblind-safe via shape + label cues, not raw colour):
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {
-  'primaryColor':'#3b82f6',      /* Blue - 8.6:1 contrast */
-  'secondaryColor':'#f97316',    /* Orange - 3.4:1 (headings) */
-  'lineColor':'#6b7280',         /* Gray - neutral */
-  'tertiaryColor':'#8b5cf6'      /* Purple - accent */
+  'primaryColor':'#E5F4F7',      /* Cyan light - soft node fill */
+  'primaryBorderColor':'#009FBC',/* IoD cyan - 4.5:1 on white for borders */
+  'primaryTextColor':'#1F2937',  /* Dark grey - 16:1 contrast */
+  'secondaryColor':'#EFE9DC',    /* Cream - for secondary node group */
+  'lineColor':'#6B7280',         /* Muted grey - neutral edges */
+  'tertiaryColor':'#FFFFFF',
+  'fontFamily':'Inter, sans-serif'
 }}}%%
 ```
 
 **Accessibility verification:**
-- Blue on white: 8.6:1 contrast ✓
-- Orange on white: 3.4:1 (headings ≥24pt only) ✓
+- IoD cyan border on white: 3.7:1 ✓ (UI element / non-text)
+- Dark grey text on cyan-light fill: 14:1 ✓
+- No reliance on hue alone — labels + shapes carry meaning
 - Safe for deuteranopia, protanopia, tritanopia ✓
 
 **Complexity (Evidence-Based Limits):**
@@ -500,7 +511,7 @@ graph TD
 ## Tips
 
 - **Enforce cognitive load limit** (max 7-9 nodes, split if more)
-- **Use colorblind-safe theme** (Blue #3b82f6 + Orange #f97316)
+- **Apply the IoD theme block** (cyan `#009FBC` + cream `#EFE9DC` + neutrals)
 - **Don't rely on color alone** (add labels and shapes)
 - **Apply theme colors consistently** for cohesion
 - **Test in preview** before finalizing

@@ -151,12 +151,15 @@ For each slide to enhance (based on user choice):
 - Colorblind-safe theme colors applied
 - Supports slide assertion without overloading
 
-**Diagram Code:**
+**Diagram Code (IoD charter theme — cyan + cream + neutrals):**
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {
-  'primaryColor':'#3b82f6',
-  'secondaryColor':'#f97316',
-  'lineColor':'#6b7280'
+  'primaryColor':'#E5F4F7',
+  'primaryBorderColor':'#009FBC',
+  'primaryTextColor':'#1F2937',
+  'secondaryColor':'#EFE9DC',
+  'lineColor':'#6B7280',
+  'fontFamily':'Inter, sans-serif'
 }}}%%
 [Complete working mermaid code designed FOR Mermaid's strengths]
 ```
@@ -301,7 +304,7 @@ Based on user choice:
 Content here
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#3b82f6'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#E5F4F7','primaryBorderColor':'#009FBC','primaryTextColor':'#1F2937','lineColor':'#6B7280'}}}%%
 [Mermaid code designed for Mermaid's visual paradigm]
 ```
 ```

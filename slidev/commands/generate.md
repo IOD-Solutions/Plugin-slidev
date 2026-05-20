@@ -42,77 +42,42 @@ mkdir -p [topic-slug]/{slides,public/images,exports}
 
 **Note:** The `slides/` subdirectory will contain individual markdown files for each slide.
 
-### 3. Generate Slidev Frontmatter (Accessibility-First)
+### 3. Generate Slidev Frontmatter (IoD charter — default theme)
 
-Using slidev-mastery skill, create frontmatter with accessibility defaults:
+**Always use the official IoD theme** `@iod-solutions/slidev-theme`. Layouts, typography, palette and the IoD logo footer are pre-wired — no inline `<style>` block needed.
 
-**Professional/Corporate (Default):**
 ```yaml
 ---
-theme: default
-background: '#ffffff'
-class: text-center
-highlighter: shiki
-lineNumbers: false
-transition: slide-left
+theme: '@iod-solutions/slidev-theme'
+layout: cover
 title: [Title]
----
-
-<style>
-/* Accessibility defaults: 18pt+ fonts, 4.5:1+ contrast */
-h1 { font-size: 3rem; }      /* ~48pt - headings ≥24pt required */
-h2 { font-size: 2rem; }      /* ~32pt */
-h3 { font-size: 1.5rem; }    /* ~24pt */
-p, li { font-size: 1.25rem; } /* ~20pt - body ≥18pt required */
-
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif; /* Sans-serif for body */
-}
-
-/* Colorblind-safe default palette: Blue + Orange */
-:root {
-  --primary: #3b82f6;    /* Blue - 8.6:1 contrast on white */
-  --secondary: #f97316;  /* Orange - 3.4:1 (headings only) */
-  --neutral: #6b7280;    /* Gray */
-  --text: #1f2937;       /* Dark gray - 16.1:1 contrast */
-}
-</style>
-```
-
-**Technical/Developer:**
-```yaml
----
-theme: seriph
+info: |
+  ## [Title]
+  [1-sentence abstract — used in browser meta + Slidev info modal]
 highlighter: shiki
 lineNumbers: true
 transition: fade
-title: [Title]
+mdc: true
 ---
 
-<style>
-/* Accessibility overrides for seriph theme */
-h1 { font-size: 3rem; }
-h2 { font-size: 2rem; }
-p, li { font-size: 1.25rem; }
-</style>
+# [Title]
+
+[Subtitle / promise / one-liner]
+
+<div class="pt-8 text-sm opacity-90">
+  [Context · Date]
+</div>
 ```
 
-**Academic:**
-```yaml
----
-theme: default
-class: text-left
-highlighter: prism
-transition: none
-title: [Title]
----
+**Theme installation** is handled by `/slidev:init`. For manual setup:
 
-<style>
-h1 { font-size: 3rem; }
-h2 { font-size: 2rem; }
-p, li { font-size: 1.25rem; }
-</style>
+```bash
+npm install "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
 ```
+
+**Do NOT** generate inline `<style>` blocks with `--primary: #3b82f6` or other off-charter colours. The IoD theme exposes CSS variables (`--iod-cyan`, `--iod-cream`, `--iod-text`, etc.) that all slides inherit automatically. Only override variables if the slide has a one-off design need, and document why.
+
+> If a user explicitly asks for a non-IoD theme (e.g. they're producing slides for an external talk where IoD branding is not appropriate), then and only then fall back to `theme: default` / `theme: seriph` with the legacy inline accessibility CSS. Default behaviour for this skill is the IoD charter.
 
 ### 4. Generate Slides from Outline (Hard Limits - Never Violate)
 
@@ -157,12 +122,29 @@ For each slide in outline, apply these critical principles:
 - Add visual placeholder TODOs during generation
 - Exceptions: quotes, definitions, bold statements
 
-**Choose appropriate layout:**
-- Title slide → `layout: cover`
-- Section headers → `layout: center`
-- Content with visuals → `layout: image-right` or `two-cols`
-- Quotes → `layout: quote`
-- Standard content → `layout: default`
+**Choose the right IoD layout** (provided by `@iod-solutions/slidev-theme`):
+
+| Slide role                                 | Layout       | Frontmatter props                       |
+|--------------------------------------------|--------------|-----------------------------------------|
+| Title slide (cover)                        | `cover`      | `title`                                 |
+| Section transition (Act break, "01/02/03") | `section`    | `num` (1, 2, 3 …)                       |
+| Standard content                           | `default`    | `meta`, `sectionTag`                    |
+| Two-column (text + diagram / comparison)   | `two-cols`   | `meta`, `sectionTag` · `::right::` slot |
+| Centered statement (rule of three, takeaway) | `statement` | `meta`, `sectionTag`                    |
+| Pull quote / citation                      | `quote`      | `author`                                |
+| Closing "Merci !" / contacts               | `end`        | `email`, `phone`, `website`, `linkedin` |
+
+**`meta` and `sectionTag`** are the OFISI footer/header convention. Always populate them when you know the values — they give every slide a polished pastille top-left + footer with logo + slide N / Total.
+
+```yaml
+---
+layout: default
+meta: 'Atelier — Recherche sémantique'    # bottom-right footer text
+sectionTag: 'Cas d''usage 1 / 3'          # top-left coloured pastille
+---
+```
+
+**Never use** `layout: image-right` or `layout: center` from generic Slidev themes — they don't exist in the IoD theme. Use `two-cols` (image goes in `::right::` slot) or `statement` (centred content) instead.
 
 **CRITICAL: How to Handle Dense Content**
 
@@ -270,7 +252,7 @@ spec:
 
 Then create separate slides for Node Affinity and Taints.
 
-**Example slide generation with enforced limits:**
+**Example slide generation with enforced limits (IoD charter applied):**
 
 From outline:
 ```markdown
@@ -281,11 +263,12 @@ From outline:
 - Teams: Autonomous ownership
 ```
 
-Generate with MEANINGFUL TITLE:
+Generate with MEANINGFUL TITLE + IoD layout:
 ```markdown
 ---
-layout: image-right
-image: '' # Placeholder for visual
+layout: two-cols
+meta: 'Architecture · Microservices'
+sectionTag: 'Bénéfices'
 ---
 
 # Microservices enable independent scaling and deployment
@@ -295,8 +278,10 @@ image: '' # Placeholder for visual
 - **Choose** optimal technology
 - **Own** service autonomously
 
+::right::
+
 <!-- TODO: Visual opportunity - HIGH PRIORITY
-Type: mermaid diagram
+Type: mermaid diagram (cyan accent, IoD palette)
 Suggestion: Flowchart showing monolith vs microservices deployment
 Why: Visualizes main benefit (one idea: deployment independence)
 Element count: 4 bullets + 1 diagram = 5 total ✓
@@ -380,24 +365,43 @@ For each slide in the outline, create a separate markdown file in `[topic-slug]/
 
 **Important:** Title slide comes from `slides.md` frontmatter, NOT a separate file.
 
-**Example: `[topic-slug]/slides/02-hook.md` (First Content Slide)**
+**Example: `[topic-slug]/slides/02-hook.md` (First Content Slide — IoD)**
 ```markdown
 ---
 layout: default
+meta: '[Presentation title — appears in footer]'
+sectionTag: '[Phase, e.g. Le problème]'
 ---
 
-# [Hook - Assertion format]
+# [Hook — assertion format]
 
-Content for opening hook
+[One-line setup of the question / problem / opportunity]
 
-Presenter · Date
+<div class="iod-box-accent mt-6">
+  <span class="text-3xl font-bold accent">82 %</span>
+  <span class="ml-2">[anchor statistic with source]</span>
+</div>
+
+<!--
+PRESENTER NOTES:
+Opening: [a memorable first sentence — hook the room]
+Timing: 90 seconds
+-->
 ```
 
-**Example: `[topic-slug]/slides/03-problem.md` (Problem Statement Slide)**
+**Example: `[topic-slug]/slides/03-problem.md` (Problem Statement — IoD)**
 ```markdown
-# [Hook Slide - Compelling opening]
+---
+layout: default
+meta: '[Presentation title]'
+sectionTag: '[Phase]'
+---
 
-[Question, statistic, or story that grabs attention]
+# [Problem statement — assertion]
+
+- [Symptom 1]
+- [Symptom 2]
+- [Symptom 3]
 
 <!--
 PRESENTER NOTES:
@@ -406,11 +410,12 @@ Timing: 90 seconds
 -->
 ```
 
-**Example: `[topic-slug]/slides/05-microservices-benefits.md` (Content Slide)**
+**Example: `[topic-slug]/slides/05-microservices-benefits.md` (Content Slide — IoD charter)**
 ```markdown
 ---
-layout: image-right
-image: '' # Placeholder for visual
+layout: two-cols
+meta: 'Architecture · Microservices'
+sectionTag: 'Bénéfices'
 ---
 
 # Microservices enable independent scaling and deployment
@@ -420,8 +425,10 @@ image: '' # Placeholder for visual
 - **Choose** optimal technology
 - **Own** service autonomously
 
+::right::
+
 <!-- TODO: Visual opportunity - HIGH PRIORITY
-Type: mermaid diagram
+Type: mermaid diagram (cyan accent, IoD palette)
 Suggestion: Flowchart showing monolith vs microservices deployment
 Element count: 4 bullets + 1 diagram = 5 total ✓
 -->
@@ -443,6 +450,38 @@ Word count: ~35 words ✓
 -->
 ```
 
+**IoD charter design patterns — use these CSS classes instead of multi-colour Tailwind:**
+
+For a "rule of three" (3 takeaways, 3 sections, 3 properties):
+```html
+<div class="iod-cols-3 mt-8">
+  <div class="iod-numbered">
+    <div class="num">01</div>
+    <div class="title">Déclaratif</div>
+    <div class="desc">On décrit le <em>quoi</em>, K8s gère le <em>comment</em>.</div>
+  </div>
+  <div class="iod-numbered">
+    <div class="num">02</div>
+    <div class="title">…</div>
+    <div class="desc">…</div>
+  </div>
+  <div class="iod-numbered">
+    <div class="num">03</div>
+    <div class="title">…</div>
+    <div class="desc">…</div>
+  </div>
+</div>
+```
+
+For info notes (cream beige box) and warnings:
+```html
+<div class="iod-box mt-6">…note neutre…</div>
+<div class="iod-box-accent mt-6"><strong class="accent">Point clé :</strong> …</div>
+<div class="iod-box-warning mt-6">⚠️ <strong>Attention :</strong> …</div>
+```
+
+**NEVER** generate `border-blue-500`, `bg-orange-50`, `text-green-600`, etc. The IoD palette is cyan + cream + black/grey only. Use `.accent` for cyan emphasis, `.muted` for grey, `.iod-box*` for boxes.
+
 **Continue for all slides:**
 - Main content slides (each in separate file: `03-*.md`, `04-*.md`, etc.)
 - Conclusion slide (e.g., `18-conclusion.md`)
@@ -455,37 +494,28 @@ Create the master file at `[topic-slug]/slides.md` that includes all individual 
 
 ```markdown
 ---
-# Global frontmatter with accessibility CSS
-theme: default
-background: '#ffffff'
-class: text-center
-highlighter: shiki
-lineNumbers: false
-transition: slide-left
+# Master file — IoD charter
+theme: '@iod-solutions/slidev-theme'
+layout: cover
 title: [Title]
+info: |
+  ## [Title]
+  [1-sentence abstract]
+highlighter: shiki
+lineNumbers: true
+transition: fade
+mdc: true
 ---
 
-<style>
-/* Accessibility defaults: 18pt+ fonts, 4.5:1+ contrast */
-h1 { font-size: 3rem; }      /* ~48pt - headings ≥24pt required */
-h2 { font-size: 2rem; }      /* ~32pt */
-h3 { font-size: 1.5rem; }    /* ~24pt */
-p, li { font-size: 1.25rem; } /* ~20pt - body ≥18pt required */
+# [Title]
 
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif; /* Sans-serif for body */
-}
+[Subtitle / one-liner]
 
-/* Colorblind-safe default palette: Blue + Orange */
-:root {
-  --primary: #3b82f6;    /* Blue - 8.6:1 contrast on white */
-  --secondary: #f97316;  /* Orange - 3.4:1 (headings only) */
-  --neutral: #6b7280;    /* Gray */
-  --text: #1f2937;       /* Dark gray - 16.1:1 contrast */
-}
-</style>
+<div class="pt-8 text-sm opacity-90">
+  [Context · Date]
+</div>
 
-<!-- Slide 1: Title (from frontmatter above, no file) -->
+<!-- Slide 1: Title (frontmatter above + cover layout from IoD theme) -->
 
 ---
 src: ./slides/02-hook.md
@@ -569,9 +599,10 @@ src: ./slides/filename.md
 
 Write individual slide files to `[topic-slug]/slides/NN-descriptive-name.md` and master file to `[topic-slug]/slides.md`.
 
-### 6. Create package.json (Optional)
+### 6. Create package.json (IoD theme wired in)
 
-For project-specific Slidev installation:
+Generate `package.json` with the IoD theme dependency pre-installed:
+
 ```json
 {
   "name": "[topic-slug]",
@@ -579,14 +610,17 @@ For project-specific Slidev installation:
   "scripts": {
     "dev": "slidev",
     "build": "slidev build",
-    "export": "slidev export"
+    "export": "slidev export",
+    "export:pdf": "slidev export slides.md --output exports/[topic-slug].pdf"
   },
   "dependencies": {
-    "@slidev/cli": "^0.48.0",
-    "@slidev/theme-default": "latest"
+    "@slidev/cli": "^52.0.0",
+    "@iod-solutions/slidev-theme": "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
   }
 }
 ```
+
+After writing, run `npm install` from the project directory so the theme is pulled before the first `slidev` invocation.
 
 Write to `[topic-slug]/package.json`.
 

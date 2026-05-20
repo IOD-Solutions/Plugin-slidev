@@ -139,11 +139,15 @@ Remember to follow evidence-based principles:
 - Phrases not sentences in bullets
 - Visual element present
 
+**Stay on the IoD charter palette:** use `.iod-numbered` for 3-element lists, `.iod-box` / `.iod-box-accent` / `.iod-box-warning` for boxes, `.accent` / `.muted` for emphasis. Never introduce Tailwind multi-colour classes (`border-blue-500`, `bg-orange-50`, …). If the user asks for a non-IoD style, confirm they want to override the brand charter first.
+
 ### If user chooses "Change layout":
 
 Show available layouts and ask which one, then use Edit tool to change the frontmatter `layout:` field.
 
-Common layouts: default, two-cols, image-right, center, quote, cover
+IoD theme layouts: `cover`, `default`, `section`, `two-cols`, `statement`, `quote`, `end`. Avoid generic Slidev layouts (`image-right`, `center`, `intro`) — they don't exist in the IoD theme. Use `two-cols` for image+text and `statement` for centred content.
+
+When changing layout, remind the user to also populate the `meta` and `sectionTag` frontmatter props so the IoD footer + top-left pastille stay coherent across slides.
 
 ### If user chooses "Add visuals":
 

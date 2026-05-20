@@ -216,9 +216,47 @@ git commit -m "Initial commit: Slidev presentation project
 Assisted-By: 🤖 Claude Code"
 ```
 
+**Wire in the IoD theme (default for every IoD presentation):**
+
+Write `package.json` so `slidev` finds the theme before the first run:
+
+```json
+{
+  "name": "[topic-slug]",
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export",
+    "export:pdf": "slidev export slides.md --output exports/[topic-slug].pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@iod-solutions/slidev-theme": "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
+  }
+}
+```
+
+Then install the theme **now**, before generation runs (avoids a noisy 404 the first time `slidev` boots):
+
+```bash
+cd $PROJECT_DIR && npm install
+```
+
+If `npm install` fails (network down, repo unreachable), warn the user and continue — generation will still produce valid IoD-charter markdown; they can run `npm install` later.
+
+**Commit the dependency setup:**
+```bash
+cd $PROJECT_DIR
+git add package.json package-lock.json
+git commit -m "Add @iod-solutions/slidev-theme dependency
+
+Assisted-By: 🤖 Claude Code"
+```
+
 **Store PROJECT_DIR** for all subsequent operations. All files will be created in this directory.
 
-Inform user: "✓ Project initialized at: $PROJECT_DIR"
+Inform user: "✓ Project initialized at: $PROJECT_DIR (IoD theme installed)"
 
 Mark "Set up project directory and git" as completed.
 

@@ -10,6 +10,16 @@ Effective presentations combine research-backed design principles, storytelling,
 
 **Research Basis**: These guidelines are based on cognitive load studies (Miller's Law), TED presentation research, MIT Communication Lab recommendations, and analysis of effective technical conference talks. They prevent common mistakes that make presentations hard to follow. See `references/presentation-best-practices.md` for detailed research citations.
 
+**IoD storytelling conventions** (derived from the internal OFISI atelier deck):
+
+- **Agenda slide** ("Ordre du jour") near the top — a numbered list with section titles + durations in minutes (e.g. `01 — Ouverture · 10 min`)
+- **Section transitions** use the `section` layout from `@iod-solutions/slidev-theme` (cyan background, big "01" / "02" / "03" + title) — one per main act
+- **Per-slide section tag** (`sectionTag` frontmatter prop) is a small top-left pastille recalling the current phase (`Cas d'usage 1 / 3`, `Décision`, `Revalidation As-Is`, …) — gives the audience a stable navigation anchor
+- **Per-slide footer meta** (`meta` frontmatter prop) is a one-liner referencing the deck name (e.g. `Atelier — Recherche sémantique · V2`) appearing bottom-right next to slide number
+- **Closing slide** uses `layout: end` (black background, "Merci !", contacts in cyan)
+
+These conventions are wired into the layouts of the IoD theme; populating `meta` + `sectionTag` in the frontmatter is enough — the layouts render the chrome automatically.
+
 ## HARD LIMITS (Never Violate)
 
 These are research-backed **maximum limits** that should NEVER be exceeded. If content exceeds these limits, you MUST split into multiple slides:

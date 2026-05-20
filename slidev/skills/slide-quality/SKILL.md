@@ -10,6 +10,8 @@ Evaluate presentation slides using evidence-based quality criteria grounded in c
 
 **Research Foundation**: Quality assessment based on working memory limits (Miller's Law), David JP Phillips' cognitive load studies, WCAG accessibility standards, and analysis of effective technical presentations.
 
+**IoD charter check (additional criterion)**: when reviewing slides produced for IoD, also verify that the slide uses the `@iod-solutions/slidev-theme` layouts and the IoD palette (cyan + cream + neutrals). Any Tailwind class like `border-blue-500`, `bg-orange-50`, `text-green-600`, or inline `<style>` redefining `--primary` to a non-cyan colour is an automatic deduction — flag it under "Palette consistency" in the report. The expected building blocks are `.iod-numbered`, `.iod-box`, `.iod-box-accent`, `.iod-box-warning`, `.accent`, `.muted`.
+
 **IMPORTANT**: Before analyzing slides, use the Read tool to load the style guide from the plugin directory:
 ```
 ${CLAUDE_PLUGIN_ROOT}/references/presentation-best-practices.md
