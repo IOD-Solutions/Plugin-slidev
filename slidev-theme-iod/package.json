@@ -27,7 +27,7 @@
     "layouts/",
     "components/",
     "styles/",
-    "public/",
+    "assets/",
     "README.md"
   ]
 }

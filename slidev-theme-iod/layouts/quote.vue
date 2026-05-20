@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import logoUrl from '../assets/iod-logo.png'
+
 defineProps<{
   author?: string
 }>()
@@ -11,6 +13,6 @@ defineProps<{
       <div class="quote-text"><slot /></div>
       <div v-if="author" class="quote-author">— {{ author }}</div>
     </div>
-    <img src="/iod-logo.png" alt="IoD solutions" class="quote-logo" />
+    <img :src="logoUrl" alt="IoD solutions" class="quote-logo" />
   </div>
 </template>

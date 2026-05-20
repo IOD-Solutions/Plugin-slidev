@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import logoUrl from '../assets/iod-logo.png'
+
 defineProps<{
   email?: string
   phone?: string
@@ -18,6 +20,6 @@ defineProps<{
       <div v-if="linkedin">{{ linkedin }}</div>
     </div>
     <slot />
-    <img src="/iod-logo.png" alt="IoD solutions" class="end-logo" />
+    <img :src="logoUrl" alt="IoD solutions" class="end-logo" />
   </div>
 </template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import logoUrl from '../assets/iod-logo.png'
+
 defineProps<{
   meta?: string
   sectionTag?: string
@@ -12,7 +14,7 @@ defineProps<{
       <slot />
     </div>
     <footer class="iod-footer">
-      <img src="/iod-logo.png" alt="IoD solutions" class="logo" />
+      <img :src="logoUrl" alt="IoD solutions" class="logo" />
       <div class="meta">
         <span v-if="meta">{{ meta }}</span>
         <span v-if="meta" class="divider">—</span>
