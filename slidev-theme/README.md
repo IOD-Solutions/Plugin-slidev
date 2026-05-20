@@ -4,37 +4,22 @@ Thème Slidev officiel **IoD solutions** : identité cyan / blanc / noir, layout
 
 ## Installation
 
-### Depuis le repo Plugin-slidev (recommandé)
-
-Le thème vit dans le monorepo [`IOD-Solutions/Plugin-slidev`](https://github.com/IOD-Solutions/Plugin-slidev) sous le dossier `slidev-theme/`. Installez-le directement par URL Git :
-
 ```bash
-# HTTPS
-npm install "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
-
-# SSH
-npm install "git+ssh://git@github.com:IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
+npm install @iod-solutions/slidev-theme
 ```
 
-Cela ajoute dans votre `package.json` :
-
-```json
-"dependencies": {
-  "@iod-solutions/slidev-theme": "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
-}
-```
-
-### Épingler une version (tag git)
-
-```bash
-npm install "git+https://github.com/IOD-Solutions/Plugin-slidev.git#semver:v0.1.0&subdirectory=slidev-theme"
-```
+C'est tout. Le package est publié sur le registry npm public ([npmjs.com/package/@iod-solutions/slidev-theme](https://www.npmjs.com/package/@iod-solutions/slidev-theme)) — pas de token, pas de config Git, pas de SSH.
 
 ### Pendant le développement du thème (lien local)
 
+Pour itérer sur le thème depuis ce repo sans publier à chaque modification :
+
 ```bash
+# Depuis votre projet de présentation :
 npm install file:/chemin/vers/Plugin-slidev/slidev-theme
 ```
+
+Le repo source vit dans [`IOD-Solutions/Plugin-slidev`](https://github.com/IOD-Solutions/Plugin-slidev) sous le dossier `slidev-theme/`.
 
 ## Activation dans une présentation Slidev
 

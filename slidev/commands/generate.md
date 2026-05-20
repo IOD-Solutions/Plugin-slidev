@@ -72,7 +72,7 @@ mdc: true
 **Theme installation** is handled by `/slidev:init`. For manual setup:
 
 ```bash
-npm install "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
+npm install @iod-solutions/slidev-theme
 ```
 
 **Do NOT** generate inline `<style>` blocks with `--primary: #3b82f6` or other off-charter colours. The IoD theme exposes CSS variables (`--iod-cyan`, `--iod-cream`, `--iod-text`, etc.) that all slides inherit automatically. Only override variables if the slide has a one-off design need, and document why.
@@ -615,7 +615,7 @@ Generate `package.json` with the IoD theme dependency pre-installed:
   },
   "dependencies": {
     "@slidev/cli": "^52.0.0",
-    "@iod-solutions/slidev-theme": "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
+    "@iod-solutions/slidev-theme": "^0.1.1"
   }
 }
 ```

@@ -232,7 +232,7 @@ Write `package.json` so `slidev` finds the theme before the first run:
   },
   "dependencies": {
     "@slidev/cli": "^52.0.0",
-    "@iod-solutions/slidev-theme": "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
+    "@iod-solutions/slidev-theme": "^0.1.1"
   }
 }
 ```

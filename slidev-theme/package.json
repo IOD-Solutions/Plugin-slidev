@@ -1,6 +1,6 @@
 {
   "name": "@iod-solutions/slidev-theme",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "IoD solutions branded Slidev theme (cyan/white identity)",
   "main": "index.js",
   "keywords": [
@@ -11,7 +11,7 @@
   "license": "UNLICENSED",
   "private": false,
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "repository": {
     "type": "git",
