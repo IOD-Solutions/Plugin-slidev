@@ -1,5 +1,5 @@
 {
-  "name": "slidev-theme-iod",
+  "name": "@iod-solutions/slidev-theme",
   "version": "0.1.0",
   "description": "IoD solutions branded Slidev theme (cyan/white identity)",
   "main": "index.js",
@@ -8,6 +8,16 @@
     "slidev",
     "iod"
   ],
+  "license": "UNLICENSED",
+  "private": false,
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IOD-Solutions/Plugin-slidev.git",
+    "directory": "slidev-theme"
+  },
   "engines": {
     "slidev": ">=0.43.0"
   },

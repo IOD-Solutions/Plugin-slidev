@@ -1,32 +1,54 @@
-# slidev-theme-iod
+# @iod-solutions/slidev-theme
 
-Thème Slidev officiel **IoD solutions** : identité cyan/blanc/noir, layouts dérivés du template d'entreprise.
+Thème Slidev officiel **IoD solutions** : identité cyan / blanc / noir, layouts dérivés du template d'entreprise.
 
 ## Installation
 
-### Dans un projet Slidev existant
+### Depuis le repo Plugin-slidev (recommandé)
+
+Le thème vit dans le monorepo [`IOD-Solutions/Plugin-slidev`](https://github.com/IOD-Solutions/Plugin-slidev) sous le dossier `slidev-theme/`. Installez-le directement par URL Git :
 
 ```bash
-npm install slidev-theme-iod
+# HTTPS
+npm install "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
+
+# SSH
+npm install "git+ssh://git@github.com:IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
 ```
 
-Puis dans le frontmatter de `slides.md` :
+Cela ajoute dans votre `package.json` :
+
+```json
+"dependencies": {
+  "@iod-solutions/slidev-theme": "git+https://github.com/IOD-Solutions/Plugin-slidev.git#subdirectory=slidev-theme"
+}
+```
+
+### Épingler une version (tag git)
+
+```bash
+npm install "git+https://github.com/IOD-Solutions/Plugin-slidev.git#semver:v0.1.0&subdirectory=slidev-theme"
+```
+
+### Pendant le développement du thème (lien local)
+
+```bash
+npm install file:/chemin/vers/Plugin-slidev/slidev-theme
+```
+
+## Activation dans une présentation Slidev
+
+Dans le frontmatter de `slides.md` :
 
 ```yaml
 ---
-theme: iod
+theme: '@iod-solutions/slidev-theme'
+layout: cover
+title: Titre de la présentation
 ---
 ```
 
-### Installation locale (pendant le développement du thème)
-
-Depuis le dossier de la présentation, lier le package local :
-
-```bash
-npm install ../slidev-theme-iod
-# ou en relatif depuis le repo Plugin-slidev :
-npm install file:../Plugin-slidev/slidev-theme-iod
-```
+> ⚠️ Les guillemets sont nécessaires autour de `@iod-solutions/...` (YAML interprète `@` comme un caractère spécial).
 
 ## Layouts disponibles
 
@@ -76,7 +98,7 @@ linkedin: LinkedIn/iod-solutions
 
 ## Tokens de design
 
-Variables CSS exposées (modifiables via `<style>` dans `slides.md`) :
+Variables CSS exposées via `:root`, modifiables avec un bloc `<style>` dans `slides.md` :
 
 | Variable             | Valeur     | Usage                       |
 |----------------------|------------|-----------------------------|
@@ -91,22 +113,21 @@ Variables CSS exposées (modifiables via `<style>` dans `slides.md`) :
 ## Classes utilitaires
 
 - `.accent` — texte en cyan IoD
-- `.muted` — texte en gris muted
+- `.muted` — texte en gris secondaire
 - `.iod-box` — box crème (info)
 - `.iod-box-accent` — box cyan light avec bordure cyan
 - `.iod-box-warning` — box orange avec bordure orange
-- `.iod-cols-2` / `.iod-cols-3` — grilles 2/3 colonnes
-- `.iod-numbered` — carte numérotée (01/02/03 style)
-
-## Logo
-
-Le logo IoD est servi via `/iod-logo.png` (rendu par Slidev depuis `public/`).
-Pour le remplacer par un SVG vectoriel : remplacer `public/iod-logo.png`.
+- `.iod-cols-2` / `.iod-cols-3` — grilles 2 / 3 colonnes
+- `.iod-numbered` — carte numérotée 01 / 02 / 03 (style template IoD)
 
 ## Roadmap
 
-- [ ] Logo en SVG vectoriel (actuellement PNG 500×246)
-- [ ] Variante dark mode du logo (pour layout `end`)
-- [ ] Layout `image-content` (image + texte deux colonnes, style "À propos")
-- [ ] Composant `<SectionTag />` réutilisable
-- [ ] Tests visuels (snapshots)
+- [ ] Logo en SVG vectoriel (actuellement PNG 500 × 246)
+- [ ] Variante dark du logo pour le layout `end`
+- [ ] Layout `image-content` (image + texte, bande cyan latérale)
+- [ ] Tests visuels (snapshots Playwright)
+- [ ] Workflow GitHub Actions pour publication automatique en GitHub Packages
+
+## License
+
+UNLICENSED — usage interne IoD solutions uniquement.
