@@ -8,12 +8,40 @@
   background: var(--iod-white);
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .iod-content {
   height: calc(100% - 3rem);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+/* --- MERMAID / SVG / IMG — Constrain so diagrams never overflow ------ */
+.slidev-layout .mermaid,
+.slidev-layout .slidev-monaco-container,
+.slidev-layout img:not(.iod-cover-logo):not(.iod-footer .logo):not(.end-logo) {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slidev-layout .mermaid svg,
+.slidev-layout svg {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+/* Wrappers that contain a mermaid diagram should not let it overflow */
+.slidev-layout .my-2,
+.slidev-layout .my-4,
+.slidev-layout .my-6 {
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* ---------- COVER ---------- */
@@ -30,18 +58,35 @@
   position: relative;
 }
 
-.iod-layout-cover h1 {
+/* Force every child of cover to inherit white text — even generated divs
+   with utility classes like text-gray-700 / opacity-75 would otherwise
+   produce dark text on cyan and become invisible. */
+.iod-layout-cover,
+.iod-layout-cover h1,
+.iod-layout-cover h2,
+.iod-layout-cover h3,
+.iod-layout-cover p,
+.iod-layout-cover li,
+.iod-layout-cover span,
+.iod-layout-cover div {
   color: var(--iod-white);
+}
+
+.iod-layout-cover h1 {
   font-size: 3rem;
   margin-bottom: 1.5rem;
 }
 
 .iod-layout-cover h2,
 .iod-layout-cover p {
-  color: var(--iod-white);
   opacity: 0.95;
   font-size: 1.5rem;
   font-weight: 400;
+}
+
+.iod-layout-cover strong {
+  color: var(--iod-white);
+  font-weight: 700;
 }
 
 .iod-layout-cover .iod-cover-logo {
@@ -98,6 +143,17 @@
   height: 100%;
 }
 
+.iod-layout-end,
+.iod-layout-end h1,
+.iod-layout-end h2,
+.iod-layout-end h3,
+.iod-layout-end p,
+.iod-layout-end li,
+.iod-layout-end span,
+.iod-layout-end div {
+  color: var(--iod-white);
+}
+
 .iod-layout-end h1 {
   color: var(--iod-white);
   font-size: 3.5rem;
@@ -121,9 +177,10 @@
   color: var(--iod-cyan);
 }
 
+/* End-slide logo uses the white variant (logo-light) — no CSS filter so
+   the cyan accent is preserved on the black background. */
 .iod-layout-end .end-logo {
   height: 5rem;
-  filter: brightness(0) invert(1);
 }
 
 /* ---------- STATEMENT (centered) ---------- */
@@ -131,14 +188,31 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;     /* horizontally center child blocks */
   padding: 2.5rem 3rem 4rem 3rem;
   background: var(--iod-white);
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .iod-layout-statement h1 {
   text-align: center;
+  max-width: 90%;
+}
+
+/* Generic statement content centers (paragraphs, lists, grids) */
+.iod-layout-statement > div:not(.iod-section-tag):not(.iod-footer) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Inside numbered cards or grids, allow normal flow */
+.iod-layout-statement .iod-cols-2,
+.iod-layout-statement .iod-cols-3 {
+  width: 100%;
 }
 
 /* ---------- QUOTE ---------- */

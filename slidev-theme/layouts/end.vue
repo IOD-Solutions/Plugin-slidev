@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import logoUrl from '../assets/iod-logo.png'
+// White-on-transparent variant for the dark "end" slide
+import logoUrl from '../assets/iod-logo-light.png'
 
 defineProps<{
   email?: string
@@ -16,7 +17,9 @@ defineProps<{
     <div v-if="email || phone || website || linkedin" class="contacts">
       <div v-if="email">{{ email }}</div>
       <div v-if="phone">{{ phone }}</div>
-      <div v-if="website"><a :href="`https://${website}`">{{ website }}</a></div>
+      <div v-if="website">
+        <a :href="website.startsWith('http') ? website : `https://${website}`">{{ website }}</a>
+      </div>
       <div v-if="linkedin">{{ linkedin }}</div>
     </div>
     <slot />

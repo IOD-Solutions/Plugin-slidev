@@ -146,6 +146,22 @@ sectionTag: 'Cas d''usage 1 / 3'          # top-left coloured pastille
 
 **Never use** `layout: image-right` or `layout: center` from generic Slidev themes — they don't exist in the IoD theme. Use `two-cols` (image goes in `::right::` slot) or `statement` (centred content) instead.
 
+**Section layout `num` prop** accepts either a number (zero-padded to two digits — `1` → `01`) or a letter / word for annexes (`A`, `B`, `Annexes` — rendered as-is). Use letters for backup sections so you don't get a weird `0B`.
+
+**Closing slide** — generate it with `layout: end` and populate as many props as you know. If the user gave their name/email anywhere during framing or brainstorming, use those. Fall back to placeholders otherwise — the user will fill them in later:
+
+```yaml
+---
+layout: end
+email: prenom.nom@iod-solutions.fr
+phone: '+33 1 23 45 67 89'
+website: www.iod-solutions.fr
+linkedin: LinkedIn/prenom-nom
+---
+```
+
+The `end` layout renders "Merci ! · Vous avez des questions ?" automatically — no body content needed unless you want extra text (which becomes the slot).
+
 **CRITICAL: How to Handle Dense Content**
 
 When outline has too much content for one slide, **SPLIT into multiple slides**:
