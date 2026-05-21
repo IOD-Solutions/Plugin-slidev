@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// White-on-transparent variant for the dark "end" slide
-import logoUrl from '../assets/iod-logo-light.png'
+import logoUrl from '../assets/iod-logo.png'
 
 defineProps<{
   email?: string

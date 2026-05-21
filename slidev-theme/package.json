@@ -1,6 +1,6 @@
 {
   "name": "@iod-solutions/slidev-theme",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "IoD solutions branded Slidev theme (cyan/white identity)",
   "main": "index.js",
   "keywords": [

@@ -132,7 +132,7 @@
 
 /* ---------- END ---------- */
 .iod-layout-end {
-  background: var(--iod-black);
+  background: var(--iod-cyan);
   color: var(--iod-white);
   display: flex;
   flex-direction: column;
@@ -155,16 +155,17 @@
 }
 
 .iod-layout-end h1 {
-  color: var(--iod-white);
   font-size: 3.5rem;
   margin-bottom: 1rem;
 }
 
 .iod-layout-end .question {
-  color: var(--iod-cyan);
+  /* Strong white on cyan — was cyan-on-black before */
+  color: var(--iod-white);
   font-weight: 600;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
+  opacity: 0.95;
 }
 
 .iod-layout-end .contacts {
@@ -174,11 +175,11 @@
 }
 
 .iod-layout-end .contacts a {
-  color: var(--iod-cyan);
+  /* On cyan background — cyan link would be invisible. Use white + underline. */
+  color: var(--iod-white);
+  text-decoration: underline;
 }
 
-/* End-slide logo uses the white variant (logo-light) — no CSS filter so
-   the cyan accent is preserved on the black background. */
 .iod-layout-end .end-logo {
   height: 5rem;
 }
